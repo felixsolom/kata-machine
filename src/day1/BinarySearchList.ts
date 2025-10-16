@@ -1,3 +1,17 @@
-export default function bs_list(haystack: number[], needle: number): boolean {
+import { flattenDiagnosticMessageText } from "typescript"
 
+export default function bs_list(haystack: number[], needle: number): boolean {
+    let min = 0;
+    let max = haystack.length;
+    while (min < max) {
+        let mid = Math.floor(min + (max - min) / 2);
+        if (haystack[mid] === needle) {return true}
+        else if (haystack[mid] < needle) {
+            min = mid + 1
+        }
+        else if (haystack[mid] > needle) {
+            max = mid
+        }
+    }
+    return false 
 }
